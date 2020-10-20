@@ -31,8 +31,6 @@ destDir="$rootDir/$1/$destFolder"
 #destDir="/media/james/DE8E-0361/transmogrified/"
 
 
-srcCnt=`ls $srcDir | wc -l`
-
 #--------------------------------------------------# 
 
 for filename in "$srcDir"/*.$srcExt; do
@@ -45,10 +43,12 @@ for filename in "$srcDir"/*.$srcExt; do
         baseName=${basePath##*/}
 
 	ffmpeg -i "$filename" $opts "$destDir"/"$baseName"."$destExt"
-	echo "----------------------- $destCnt / $srcCnt done!  ---------------------"	
 	echo "---------------------------------------------------------------------"
 	echo "\n"
 	echo "\n"
+	srcCnt=`ls $srcDir | wc -l`
+	echo "----------------------- $destCnt / $srcCnt done!  ---------------------"	
+
 done
 #
 # ffmpeg -i $filename   -c:v dnxhd -profile dnxhr_lb -c:a pcm_s16le media/james/DE8E-0361/transmogrified/ $filename.mov 
